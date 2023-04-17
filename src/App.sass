@@ -1,31 +1,29 @@
 .text-size
     font-size: 25px
 
-.main-timer
+.main__timer
     font-family:sans-serif
-    font-size:25vw
+    font-size:100px
     &__buttons
-        justify-self: center
+        display: flex
+        justify-content: center
+    &__buttons > button
+        width: 50%
     
 .main
-    padding-top:5vh
-    width: 95vw
+    padding-top:5%
+    width: 350px
     max-width: 500px
     margin: 0 auto
     display: grid
-    row-gap: 2vh
+    row-gap: 20px
 
 .input
     display: flex
     &__number
-        width: 10%
+        width: 20%
     &__name
-        width:75%
+        width:65%
     &__distance
         width:15%
-.table
-    height: 50px
-    display: grid
-    grid-template-columns: 10% 90%
-.table > div
-    border: #00ffff solid 
+

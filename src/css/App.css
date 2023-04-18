@@ -26,17 +26,29 @@
   row-gap: 20px;
 }
 
-.input {
+.addUser__main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-bottom: 10px;
 }
-.input__number {
-  width: 20%;
+
+.addUser > button {
+  width: 100%;
 }
-.input__name {
-  width: 65%;
+
+.user__distanceSettings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-bottom: 10px;
 }
-.input__distance {
+.user__number {
   width: 15%;
+}
+.user__name {
+  width: 85%;
 }/*# sourceMappingURL=App.css.map */

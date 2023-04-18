@@ -1,15 +1,13 @@
-import '../../../css/usersList.css'
+import '../../../css/userItem.css'
 
-import React from 'react'
-
-const UsersList = () => {
+const UserItem = ({userProps}) => {
   return (
     <div className='list-item'>
         <div className='user-title'>
-            <div className='user-number'>1</div>
-            <div className='user-name'>Baruzdin</div>
-            <div className='user-lap'>13/15</div>
-            <div className='user-time'>00:00:00</div>
+            <div className='user-number'>{userProps.id}</div>
+            <div className='user-name'>{userProps.userName}</div>
+            <div className='user-lap'>--/--</div>
+            <div className='user-time'>{userProps.personalTimer}</div>
             <button className='user-info'>▼</button>
             <button className='user-finish'>lap</button>
         </div>
@@ -24,4 +22,4 @@ const UsersList = () => {
   )
 }
 
-export default UsersList
+export default UserItem

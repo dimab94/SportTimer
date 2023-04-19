@@ -2,6 +2,7 @@ import UserItem from '../UserItem/UserItem'
 
 
 const UserList = ({props}) => {
+  console.log(props)
   return (
     <div>
         {props.map((user)=>

@@ -3,13 +3,45 @@
 }
 
 .user-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2px 2px;
+}
+.user-title > button {
+  width: 30%;
+  height: 40px;
+}
+
+.user-wrapper {
   display: grid;
-  grid-template-columns: 10% 25% 15% 20% 15% 15%;
-  padding: 3px;
+  width: 70%;
+  grid-template-columns: 15% 40% 15% 30%;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
-.user-title > button {
-  height: 30px;
+
+.user-info {
+  padding: 2px 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.user-info > button {
+  height: 40px;
+  width: 40px;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.user-laps {
+  width: 100%;
+}
+
+.active {
+  background-color: #a2efa2;
 }/*# sourceMappingURL=userItem.css.map */

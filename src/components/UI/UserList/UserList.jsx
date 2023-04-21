@@ -1,12 +1,11 @@
 import UserItem from '../UserItem/UserItem'
 
 
-const UserList = ({props}) => {
-  console.log(props)
+const UserList = ({props,remove}) => {
   return (
     <div>
         {props.map((user)=>
-          <UserItem userProps={user} key={user.id}/>
+          <UserItem remove={remove} userProps={user} key={user.id}/>
           )}
     </div>
   )

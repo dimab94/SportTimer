@@ -1,47 +1,19 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
-import { getPadTime } from '../../../helpers/getPadTime';
+import { useState } from 'react';
+import Timer from './Timer/Timer';
 
-const MainTimer = () => {
 
-    const[timeLeft, setTimeLeft] = useState(0);
-    const[isCounting,setIsCounting] = useState(false);
+const MainTimer = ({props,timerLoad,reset}) => {
+    const handleStart = ()=>{timerLoad(true)};
   
-    const hours = getPadTime(Math.floor(timeLeft/3600));
-    const minutes = getPadTime(Math.floor(timeLeft/60) - hours*60);
-    const seconds = getPadTime(timeLeft - (minutes * 60 + hours * 3600));
+    const handleStop = ()=>{timerLoad(false)};
   
-  
-    useEffect(()=>{
-      const interval = setInterval(()=>{
-        isCounting &&
-         setTimeLeft((timeLeft)=>(hours<=99? timeLeft + 1: 0))
-      }, 1000);
-      if (timeLeft>=6*3600) {
-        setIsCounting(false);
-        setTimeLeft(0)
-      }
-      return ()=>{
-        clearInterval(interval);
-      };
-    }, [timeLeft, isCounting])
-  
-    const handleStart = ()=>{setIsCounting(true)};
-  
-    const handleStop = ()=>{setIsCounting(false)};
-  
-    const handleReset = ()=>{setIsCounting(false); setTimeLeft(0)};
+    const handleReset = ()=>{timerLoad(false); reset(0)};
   return (
     <div>
-        <div className='main__timer main-timer'>
-          <span>{hours}</span>
-          <span>:</span>
-          <span>{minutes}</span>
-          <span>:</span>
-          <span>{seconds}</span>
-        </div>
+        <Timer props={props} timerLoad={timerLoad} reset={reset}/>
         <div className='main__timer__buttons'>
-          {isCounting ? (
+          {props.isCounting ? (
               <button className='text-size' onClick={handleStop}>stop</button>
             ):(
               <button className='text-size' onClick={handleStart}>start</button>)

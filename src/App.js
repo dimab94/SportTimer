@@ -1,19 +1,19 @@
 import './css/App.css';
 import MainTimer from './components/UI/MainTimer/MainTimer';
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import UserList from './components/UI/UserList/UserList';
 import AddUserForm from './components/UI/AddUserForm/AddUserForm'
 
 function App() {
 
   const[users,setUsers] = useState([])
-
+  console.log(users)
   const[isCounting,setIsCounting] = useState(false);
-  const[timeLeft, setTimeLeft] = useState(0);
-
-  const reset = (sec)=>{
-    setTimeLeft(sec)
-  }
+  const[resetState,setResetState] = useState(false)
+  
+  const resetLaps=(e)=>
+    setResetState(e)
+  
 
   const countingProgres=(count)=>{
     setIsCounting(count)
@@ -32,8 +32,11 @@ function App() {
     <div className="App">
       <div className='main'>
         <AddUserForm add={addNewUser}/>
-        <MainTimer props= {{isCounting,timeLeft}} timerLoad = {countingProgres} reset = {reset}/>
-        <UserList props={{isCounting,timeLeft,users}} remove={removeUser} reset = {reset} timerLoad = {countingProgres}/>
+        <MainTimer props= {{isCounting}} timerLoad = {countingProgres} resetLaps={resetLaps}/>
+        {users.length !==0
+          ? <UserList props={{isCounting,resetState,users}} remove={removeUser} timerLoad = {countingProgres}/>
+          : <div>Участники не добавлены</div>
+        }
       </div>
     </div>
   );

@@ -1,17 +1,25 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useMemo} from 'react';
 import Timer from './Timer/Timer';
 
 
-const MainTimer = ({props,timerLoad,reset}) => {
-    const handleStart = ()=>{timerLoad(true)};
+const MainTimer = ({props,timerLoad,resetLaps}) => {
+
+  const[timeLeft, setTimeLeft] = useState(0);
+
+  const handleStart = ()=>{timerLoad(true); resetLaps(false)};
   
-    const handleStop = ()=>{timerLoad(false)};
+  const handleStop = ()=>{timerLoad(false)};
   
-    const handleReset = ()=>{timerLoad(false); reset(0)};
+  const handleReset = ()=>{timerLoad(false); setTimeLeft(0); resetLaps(true)};
+
+  const reset =()=>{
+    setTimeLeft(0)
+  }
+    
   return (
     <div>
-        <Timer props={props} timerLoad={timerLoad} reset={reset}/>
+        <Timer props={{props,timeLeft}} timerLoad={timerLoad} reset = {reset}/>
         <div className='main__timer__buttons'>
           {props.isCounting ? (
               <button className='text-size' onClick={handleStop}>stop</button>

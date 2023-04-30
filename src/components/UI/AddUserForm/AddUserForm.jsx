@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 
 const AddUserForm = ({add}) => {
 
@@ -6,7 +6,8 @@ const AddUserForm = ({add}) => {
 
     const addNewUser = (e)=>{
         e.preventDefault()
-        const newUser = {...user,id:Date.now()}
+        
+        const newUser = {...user,id:Date.now(),laps: user.distance*1000/user.lap}
         add(newUser)
         setUser({...user,userName:'',userNumber:''})
       }

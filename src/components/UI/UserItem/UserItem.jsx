@@ -2,20 +2,24 @@ import { useState } from 'react'
 import '../../../css/userItem.css'
 import Timer from '../MainTimer/Timer/Timer'
 
-const UserItem = (props) => {
-
+const UserItem = ({props,remove,userProps,reset,timerLoad}) => {
+  console.log(props.resetState)
+  const[timeLeft, setTimeLeft] = useState(0);
   const[userInfo,setUserInfo] = useState(false)
-
   const[userLaps,setUserLaps] = useState(0)
 
-  const overalLaps = props.userProps.distance/props.userProps.lap*1000
+/*   props.resetState
+  ? setUserLaps(1)
+  : console.log(props.resetState) */
 
-  const conterLaps = () => {
-    ((overalLaps-1) > userLaps)?
-      setUserLaps(userLaps+1) 
+  const counterLaps = () => {
+    (userProps.laps-1) > userLaps
+      ? setUserLaps(userLaps+1) 
       : setUserLaps('--');
-      
     }
+
+
+  
 
   const showUserInfo =()=> (userInfo? setUserInfo(false) : setUserInfo(true))
 
@@ -23,18 +27,18 @@ const UserItem = (props) => {
     <div className='list-item'>
         <div className='user-title'>
             <div className='user-wrapper' onClick={showUserInfo}>
-              <div className='user-number'>{props.userProps.userNumber}</div>
-              <div className='user-name'>{props.userProps.userName}</div>
+              <div className='user-number'>{userProps.userNumber}</div>
+              <div className='user-name'>{userProps.userName}</div>
               <div className='user-lap'>
                 <span>{userLaps}</span>
                 <span>/</span>
-                <span>{overalLaps}</span>
+                <span>{userProps.laps}</span>
               </div>
-              <Timer props={props.props} timerLoad={props.timerLoad} reset={props.reset}/>
+              <Timer props={props} timerLoad={timerLoad} reset={reset}/>
             </div>
-            { ((overalLaps-1) > userLaps) ?
-              <button className='user-finish' onClick={conterLaps}>lap</button>
-              : <button className='user-finish' onClick={conterLaps}>finish</button>
+            { ((userProps.laps-1) > userLaps) ?
+              <button disabled={!props.isCounting} className='user-finish' onClick={counterLaps}>lap</button>
+              : <button disabled={!props.isCounting} className='user-finish' onClick={counterLaps}>finish</button>
             }
         </div>
           {userInfo ?
@@ -47,7 +51,7 @@ const UserItem = (props) => {
                 </ol>
               </div>
               <button className='user__delete' 
-              onClick={()=>props.remove(props.userProps)}>X</button>
+              onClick={()=>remove(userProps)}>X</button>
             </div> 
             :<div/>
           }

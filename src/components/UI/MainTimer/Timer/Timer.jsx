@@ -2,11 +2,11 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { getPadTime } from '../../../../helpers/getPadTime';
 
-const Timer = ({props,reset,timerLoad}) => {
-
+const Timer = ({props,timerLoad,reset}) => {
+console.log(props)
   const timeLeft = props.timeLeft
-  const isCounting = props.isCounting
-    
+  const isCounting = props.props.isCounting
+  
     const hours = getPadTime(Math.floor(timeLeft/3600));
     const minutes = getPadTime(Math.floor(timeLeft/60) - hours*60);
     const seconds = getPadTime(timeLeft - (minutes * 60 + hours * 3600));
@@ -37,17 +37,3 @@ const Timer = ({props,reset,timerLoad}) => {
 }
 
 export default Timer
-
-
-
-/* const interval = setInterval(()=>{
-  isCounting &&
-  reset(()=>{
-    if(hours<=6){
-      timeLeft +1
-    }
-    else{
-      timerLoad(false);
-      reset(0)
-    }
-  })},1000) */

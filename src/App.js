@@ -7,7 +7,6 @@ import AddUserForm from './components/UI/AddUserForm/AddUserForm'
 function App() {
 
   const[users,setUsers] = useState([])
-  console.log(users)
   const[isCounting,setIsCounting] = useState(false);
   const[resetState,setResetState] = useState(false)
   
@@ -32,9 +31,9 @@ function App() {
     <div className="App">
       <div className='main'>
         <AddUserForm add={addNewUser}/>
-        <MainTimer props= {{isCounting}} timerLoad = {countingProgres} resetLaps={resetLaps}/>
+        <MainTimer timerIsActive= {isCounting} timerLoad = {countingProgres} resetLaps={resetLaps}/>
         {users.length !==0
-          ? <UserList props={{isCounting,resetState,users}} remove={removeUser} timerLoad = {countingProgres}/>
+          ? <UserList props={{isCounting,users,resetState}} remove={removeUser} timerLoad = {countingProgres} resetLaps={resetLaps}/>
           : <div>Участники не добавлены</div>
         }
       </div>
@@ -43,3 +42,13 @@ function App() {
 }
 
 export default App;
+
+/* Оставщийся функционал:
+    - добавить "финиш"
+    - функционал для отмены последнего круга
+    - сделать деструктуризацию
+    - Поприятней интерфейс (подсвечивание тех кто финишировал зеленым)
+    - Проверка полей ввода
+    - сохранение информации localStorage
+    -----------------------
+    попробовать реализовать единый итоговый протокол */

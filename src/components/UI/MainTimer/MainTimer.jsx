@@ -3,8 +3,7 @@ import { useState, useMemo} from 'react';
 import Timer from './Timer/Timer';
 
 
-const MainTimer = ({props,timerLoad,resetLaps}) => {
-
+const MainTimer = ({timerIsActive,timerLoad,resetLaps}) => {
   const[timeLeft, setTimeLeft] = useState(0);
 
   const handleStart = ()=>{timerLoad(true); resetLaps(false)};
@@ -13,15 +12,15 @@ const MainTimer = ({props,timerLoad,resetLaps}) => {
   
   const handleReset = ()=>{timerLoad(false); setTimeLeft(0); resetLaps(true)};
 
-  const reset =()=>{
-    setTimeLeft(0)
+  const reset =(e)=>{
+    setTimeLeft(e)
   }
     
   return (
     <div>
-        <Timer props={{props,timeLeft}} timerLoad={timerLoad} reset = {reset}/>
+        <Timer props={{timerIsActive,timeLeft}} timerLoad={timerLoad} reset = {reset}/>
         <div className='main__timer__buttons'>
-          {props.isCounting ? (
+          {timerIsActive ? (
               <button className='text-size' onClick={handleStop}>stop</button>
             ):(
               <button className='text-size' onClick={handleStart}>start</button>)

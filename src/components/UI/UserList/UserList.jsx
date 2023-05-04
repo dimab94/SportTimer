@@ -1,12 +1,11 @@
 import UserItem from '../UserItem/UserItem'
 
 
-const UserList = ({props,remove,reset,timerLoad}) => {
-  console.log(props,remove,reset,timerLoad)
+const UserList = ({props,remove,timerLoad, resetLaps}) => {
   return (
     <div>
         {props.users.map((user)=>
-          <UserItem remove={remove} userProps={user} key={user.id} reset={reset} timerLoad={timerLoad} props={props}/>
+          <UserItem remove={remove} userProps={user} key={user.id} timerLoad={timerLoad} props={props} resetLaps={resetLaps}/>
           )}
     </div>
   )

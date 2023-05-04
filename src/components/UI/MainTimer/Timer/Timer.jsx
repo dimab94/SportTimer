@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import { getPadTime } from '../../../../helpers/getPadTime';
 
 const Timer = ({props,timerLoad,reset}) => {
-console.log(props)
+/*   console.log(props) */
   const timeLeft = props.timeLeft
-  const isCounting = props.props.isCounting
+  const isCounting = props.timerIsActive
   
     const hours = getPadTime(Math.floor(timeLeft/3600));
     const minutes = getPadTime(Math.floor(timeLeft/60) - hours*60);

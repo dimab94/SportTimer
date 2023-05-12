@@ -12,3 +12,5 @@ const UserList = ({props,remove,timerLoad, resetLaps}) => {
 }
 
 export default UserList
+
+/* массив юзеров дальше передавать не надо! */

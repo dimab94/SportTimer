@@ -14,8 +14,8 @@ function App() {
     setResetState(e)
   
 
-  const countingProgres=(count)=>{
-    setIsCounting(count)
+  const countingProgres=(bulean)=>{
+    setIsCounting(bulean)
   }
 
   const addNewUser = (newUser)=>{

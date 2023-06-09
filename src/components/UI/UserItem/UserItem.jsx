@@ -5,8 +5,6 @@ import { getPadTime } from '../../../helpers/getPadTime';
 
 const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
 
-console.log(userProps)
-
   const[timeLeft, setTimeLeft] = useState(0);
   const[userInfo,setUserInfo] = useState(false)
   const[userLaps,setUserLaps] = useState(0)
@@ -17,31 +15,27 @@ console.log(userProps)
   useEffect(()=> setTimerIsActive(props.isCounting),[props.isCounting])
 
 console.log(userProps.laps)
+console.log(userLaps)
+console.log(timerIsActive)
 
-  const counterLaps = () => { 
-
-    setUserLaps(userLaps+1);
-
-    if(userProps.laps==(userLaps+1)){
+  const counterLaps = () => {
+    setUserLaps(userLaps+1)
+    const hours = getPadTime(Math.floor(timeLeft/3600));
+    const minutes = getPadTime(Math.floor(timeLeft/60) - hours*60);
+    const seconds = getPadTime(timeLeft - (minutes * 60 + hours * 3600));
+    const sum = timeLeft - sumLaps
+    setSumLaps(timeLeft)
+    setTimeLaps(
+      [...timeLaps,
+        {hours:hours,
+        minutes:minutes,
+        seconds:seconds,
+        minSum: getPadTime(Math.floor(sum/60)),
+        secSum: getPadTime(sum - Math.floor(sum/60))
+      }
+      ])
+    if(userProps.laps<=(userLaps+1)){
       setTimerIsActive(false)
-    }
-    /* Тут разобраться с финишем */
-    else{
-
-      const hours = getPadTime(Math.floor(timeLeft/3600));
-      const minutes = getPadTime(Math.floor(timeLeft/60) - hours*60);
-      const seconds = getPadTime(timeLeft - (minutes * 60 + hours * 3600));
-      const sum = timeLeft - sumLaps
-      setSumLaps(timeLeft)
-      setTimeLaps(
-        [...timeLaps,
-          {hours:hours,
-          minutes:minutes,
-          seconds:seconds,
-          minSum: getPadTime(Math.floor(sum/60)),
-          secSum: getPadTime(sum - Math.floor(sum/60))
-        }
-        ])
     }
   }
 

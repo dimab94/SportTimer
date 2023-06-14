@@ -2,9 +2,6 @@
   font-size: 25px;
 }
 
-.main__timer {
-  font-size: 100px;
-}
 .main__timer__buttons {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -33,7 +33,7 @@ function App() {
         <AddUserForm add={addNewUser}/>
         <MainTimer timerIsActive= {isCounting} timerLoad = {countingProgres} resetLaps={resetLaps}/>
         {users.length !==0
-          ? <UserList props={{isCounting,users,resetState}} remove={removeUser} timerLoad = {countingProgres} resetLaps={resetLaps}/>
+          ? <UserList props={{isCounting,resetState}} users={users} remove={removeUser} timerLoad = {countingProgres} resetLaps={resetLaps}/>
           : <div>Участники не добавлены</div>
         }
       </div>
@@ -45,6 +45,7 @@ export default App;
 
 /* Оставщийся функционал:
     - добавить "финиш" +
+    - при нажатии кнопки старт чтоб не запускался таймер у юзера
     - функционал для отмены последнего круга
     - сделать деструктуризацию
     - Поприятней интерфейс (подсвечивание тех кто финишировал зеленым)

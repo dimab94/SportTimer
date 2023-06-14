@@ -14,10 +14,6 @@ const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
 
   useEffect(()=> setTimerIsActive(props.isCounting),[props.isCounting])
 
-console.log(userProps.laps)
-console.log(userLaps)
-console.log(timerIsActive)
-
   const counterLaps = () => {
     setUserLaps(userLaps+1)
     const hours = getPadTime(Math.floor(timeLeft/3600));
@@ -31,7 +27,7 @@ console.log(timerIsActive)
         minutes:minutes,
         seconds:seconds,
         minSum: getPadTime(Math.floor(sum/60)),
-        secSum: getPadTime(sum - Math.floor(sum/60))
+        secSum: getPadTime(sum - (Math.floor(sum/60)*60))
       }
       ])
     if(userProps.laps<=(userLaps+1)){

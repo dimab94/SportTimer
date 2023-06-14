@@ -1,10 +1,10 @@
 import UserItem from '../UserItem/UserItem'
 
 
-const UserList = ({props,remove,timerLoad, resetLaps}) => {
+const UserList = ({props,remove,timerLoad, resetLaps, users}) => {
   return (
     <div>
-        {props.users.map((user)=>
+        {users.map((user)=>
           <UserItem remove={remove} userProps={user} key={user.id} timerLoad={timerLoad} props={props} resetLaps={resetLaps}/>
           )}
     </div>
@@ -12,5 +12,3 @@ const UserList = ({props,remove,timerLoad, resetLaps}) => {
 }
 
 export default UserList
-
-/* массив юзеров дальше передавать не надо! */

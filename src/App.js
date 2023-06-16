@@ -1,6 +1,6 @@
 import './css/App.css';
 import MainTimer from './components/UI/MainTimer/MainTimer';
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import UserList from './components/UI/UserList/UserList';
 import AddUserForm from './components/UI/AddUserForm/AddUserForm'
 
@@ -46,13 +46,13 @@ export default App;
 /* Оставщийся функционал:
     - добавить "финиш" +
     - при нажатии кнопки старт чтоб не запускался таймер у юзера +
-    - функционал для отмены последнего круга
+    - функционал для отмены последнего круга (Сломался подсчет кругов)
     - сделать деструктуризацию (Нахуй не надо)
     - Поприятней интерфейс (подсвечивание тех кто финишировал зеленым)
     - Проверка полей ввода
     - сохранение информации localStorage
     -----------------------
-    попробовать реализовать единый итоговый протокол
+    попробовать реализовать единый итоговый протокол, чтоб все(со всех устройств) кто финишировал попадали сразу в список с итоговым временем.
     PWA?
     Service Workers */
     

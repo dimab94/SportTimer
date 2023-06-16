@@ -12,7 +12,10 @@ const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
   const[sumLaps, setSumLaps] = useState(0)
   const[timerIsActive, setTimerIsActive] = useState (false)
 
-  useEffect(()=> setTimerIsActive(props.isCounting),[props.isCounting])
+  useEffect(()=> {
+    if(userProps.laps>userLaps)
+    {setTimerIsActive(props.isCounting)}
+  },[props.isCounting])
 
   const counterLaps = () => {
     setUserLaps(userLaps+1)

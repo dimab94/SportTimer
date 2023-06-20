@@ -8,8 +8,14 @@ const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
   const[timeLeft, setTimeLeft] = useState(0);
   const[userInfo,setUserInfo] = useState(false)
   const[timeLaps, setTimeLaps] = useState([])
-  const[sumLaps, setSumLaps] = useState(0)
   const[timerIsActive, setTimerIsActive] = useState (false)
+
+  const transformation = (sec) => {
+    const hours = getPadTime(Math.floor(sec/3600));
+    const minutes = getPadTime(Math.floor(sec/60) - hours*60);
+    const seconds = getPadTime(sec - (minutes * 60 + hours * 3600));
+    return `${hours}:${minutes}:${seconds}`
+  }
 
   useEffect(()=> {
     if(userProps.laps>timeLaps.length)
@@ -17,24 +23,25 @@ const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
   },[props.isCounting])
 
   const counterLaps = () => {
-    const hours = getPadTime(Math.floor(timeLeft/3600));
-    const minutes = getPadTime(Math.floor(timeLeft/60) - hours*60);
-    const seconds = getPadTime(timeLeft - (minutes * 60 + hours * 3600));
-    const sum = timeLeft - sumLaps
-    setSumLaps(timeLeft)
+    let lapSec = 0
+    if(timeLaps[0]){
+      lapSec = timeLeft - timeLaps[timeLaps.length-1].overallSec
+    }
     setTimeLaps(
       [...timeLaps,
-        {hours:hours,
-        minutes:minutes,
-        seconds:seconds,
-        minSum: getPadTime(Math.floor(sum/60)),
-        secSum: getPadTime(sum - (Math.floor(sum/60)*60)),
+        {
+        overallSec:timeLeft,
+        overallTime:transformation(timeLeft),
+        lapTime: transformation(lapSec),
         id:Date.now()
       }
       ])
+
     if(userProps.laps<=(timeLaps.length+1)){
       setTimerIsActive(false)
     }
+
+    console.log(timeLaps)
   }
 
     const mainReset = props.resetState
@@ -48,7 +55,7 @@ const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
       setTimeLeft(0)
       resetLaps(false)
       setTimeLaps([])
-      setSumLaps(0)
+     // setSumLaps(0)
     }
 },[mainReset])
 
@@ -87,7 +94,7 @@ const removeLap = (timeLaps)=>{
               <div className='user-laps' onClick={showUserInfo}>
                 <p>Laps</p>
                 <ol>
-                  {timeLaps.map((userLapTime)=><li key={userLapTime.id}> {userLapTime.hours}:{userLapTime.minutes}:{userLapTime.seconds} ({userLapTime.minSum}:{userLapTime.secSum})</li>)}
+                  {timeLaps.map((userLapTime)=><li key={userLapTime.id}> {userLapTime.overallTime}  ({userLapTime.lapTime})</li>)}
                 </ol>
               </div>
               <button className='lap__delete' onClick={()=>removeLap(timeLaps)}>←</button>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useMemo} from 'react';
 import Timer from './Timer/Timer';
+import '../../../css/mainTimer.css'
 
 
 const MainTimer = ({timerIsActive,timerLoad,resetLaps}) => {

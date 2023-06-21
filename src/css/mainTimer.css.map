@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"mainTimer.css"}
+{"version":3,"sources":["../components/UI/MainTimer/mainTimer.sass","mainTimer.css"],"names":[],"mappings":"AAAA;EACI,mBAAA;ACCJ","file":"mainTimer.css"}

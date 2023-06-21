@@ -1,9 +1,9 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { getPadTime } from '../../../../helpers/getPadTime';
 
+
 const Timer = ({props,timerLoad,reset}) => {
-  /* console.log(props) */
   const timeLeft = props.timeLeft
   const isCounting = props.timerIsActive
   

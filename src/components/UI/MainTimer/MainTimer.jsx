@@ -1,21 +1,18 @@
 import React from 'react'
-import { useState, useMemo} from 'react';
+//import { useState, useMemo} from 'react';
 import Timer from './Timer/Timer';
 import '../../../css/mainTimer.css'
 
 
-const MainTimer = ({timerIsActive,timerLoad,resetLaps}) => {
-  const[timeLeft, setTimeLeft] = useState(0);
+const MainTimer = ({timerIsActive,timerLoad,resetLaps,reset,timeLeft}) => {
 
   const handleStart = ()=>{timerLoad(true); resetLaps(false)};
   
   const handleStop = ()=>{timerLoad(false)};
   
-  const handleReset = ()=>{timerLoad(false); setTimeLeft(0); resetLaps(true)};
+  const handleReset = ()=>{timerLoad(false); reset(0); resetLaps(true)};
 
-  const reset =(e)=>{
-    setTimeLeft(e)
-  }
+
     
   return (
     <div>

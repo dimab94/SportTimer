@@ -9,6 +9,11 @@ function App() {
   const[users,setUsers] = useState([])
   const[isCounting,setIsCounting] = useState(false);
   const[resetState,setResetState] = useState(false)
+  const[timeLeft, setTimeLeft] = useState(0);
+
+  const reset =(e)=>{
+    setTimeLeft(e)
+  }
   
   const resetLaps=(e)=>
     setResetState(e)
@@ -31,9 +36,9 @@ function App() {
     <div className="App">
       <div className='main'>
         <AddUserForm add={addNewUser}/>
-        <MainTimer timerIsActive= {isCounting} timerLoad = {countingProgres} resetLaps={resetLaps}/>
+        <MainTimer timerIsActive= {isCounting} timerLoad = {countingProgres} resetLaps={resetLaps} reset={reset} timeLeft={timeLeft}/>
         {users.length !==0
-          ? <UserList props={{isCounting,resetState}} users={users} remove={removeUser} timerLoad = {countingProgres} resetLaps={resetLaps}/>
+          ? <UserList props={{isCounting,resetState,timeLeft}} users={users} remove={removeUser} timerLoad = {countingProgres} resetLaps={resetLaps}/>
           : <div>Участники не добавлены</div>
         }
       </div>
@@ -46,11 +51,11 @@ export default App;
 /* Оставщийся функционал:
     - добавить "финиш" +
     - при нажатии кнопки старт чтоб не запускался таймер у юзера +
-    - функционал для отмены последнего круга +
-    - сделать деструктуризацию (Нахуй не надо)
+    - функционал для отмены последнего круга ДОДЕЛАТЬ!! Не работает если отменить последний круг!
+    - сделать чтоб отображалось время круга, а после финиш - общее
     - Поприятней интерфейс (подсвечивание тех кто финишировал зеленым, большой главный секундомер!)
     - Проверка полей ввода
-    - сохранение информации localStorage
+    - сохранение информации в кэш и работа когда телефон в спящем или приложуха свернута. (тут скорее через PWA)
     -----------------------
     попробовать реализовать единый итоговый протокол, чтоб все(со всех устройств) кто финишировал попадали сразу в список с итоговым временем.
     PWA?

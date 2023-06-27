@@ -5,7 +5,7 @@ import { getPadTime } from '../../../helpers/getPadTime';
 
 const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
 
-  const[timeLeft, setTimeLeft] = useState(0);
+  const[timeLeft, setLapTimeLeft] = useState(0);
   const[userInfo,setUserInfo] = useState(false)
   const[timeLaps, setTimeLaps] = useState([])
   const[timerIsActive, setTimerIsActive] = useState (false)
@@ -22,7 +22,7 @@ const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
     {setTimerIsActive(props.isCounting)}
   },[props.isCounting])
 
-  const counterLaps = () => {
+  /* const counterLaps = () => {
     let lapSec = 0
     if(timeLaps[0]){
       lapSec = timeLeft - timeLaps[timeLaps.length-1].overallSec
@@ -40,33 +40,55 @@ const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
     if(userProps.laps<=(timeLaps.length+1)){
       setTimerIsActive(false)
     }
+  } */
+// написать такой код чтоб вместо общего времени было время круга у каждого юзера -> но чтоб при остановке секундомера появлялось общее время.
+  const counterLaps = () => {
+    let overallSec = props.timeLeft
+      if(!timeLaps){
+      }
+    setTimeLaps(
+      [...timeLaps,
+        {
+        overallSec:overallSec,
+        overallTime:transformation(overallSec),
+        lapSec: timeLeft,
+        lapTime: transformation(timeLeft),
+        id:Date.now()
+      }
+      ])
 
-    console.log(timeLaps)
-  }
-
-    const mainReset = props.resetState
-
-    const reset =(e)=>{
-      setTimeLeft(e)
+    if(userProps.laps<=(timeLaps.length+1)){
+      setTimerIsActive(false)
+      setLapTimeLeft(overallSec)
     }
+    else setLapTimeLeft(0)
+    
+  }
+  
+
+  const mainReset = props.resetState
 
   useEffect(()=>{
     if(mainReset){
-      setTimeLeft(0)
+      setLapTimeLeft(0)
       resetLaps(false)
       setTimeLaps([])
-     // setSumLaps(0)
     }
-},[mainReset])
+  },[mainReset])
 
-const removeLap = (timeLaps)=>{ 
+  const reset=(e)=>{
+    setLapTimeLeft(e)
+  }
+
+const removeLap = ()=>{
   if (props.isCounting && userProps.laps>=(timeLaps.length)){
-    timeLaps.splice(timeLaps.length-1, 1);
+    timeLaps.pop()
     setTimeLaps([...timeLaps]);
-    setTimerIsActive(true)
+    if (timeLaps.length>=1) 
+      setLapTimeLeft(props.timeLeft - timeLaps[timeLaps.length-1].overallSec) 
+    else setLapTimeLeft(props.timeLeft)
   }
 }
-
 
 
   const showUserInfo =()=> (userInfo? setUserInfo(false) : setUserInfo(true))
@@ -82,7 +104,7 @@ const removeLap = (timeLaps)=>{
                 <span>/</span>
                 <span>{userProps.laps}</span>
               </div>
-              <Timer props={{timeLeft,timerIsActive}} reset={reset} timerLoad={timerLoad}/>
+              <Timer props={{timeLeft,timerIsActive}} timerLoad={timerLoad} reset={reset}/>
             </div>
             { ((userProps.laps-1) > timeLaps.length) ?
               <button disabled={!timerIsActive} className='user-finish' onClick={counterLaps}>lap</button>

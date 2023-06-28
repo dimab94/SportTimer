@@ -14,7 +14,7 @@ const Timer = ({props,timerLoad,reset}) => {
         const interval = setInterval(()=>{
           isCounting &&
           reset(()=>(hours<=6? timeLeft +1: 0))
-        }, 500);
+        }, 1000);
         if (timeLeft>=6*3600) {
           timerLoad(false);
           reset(0)

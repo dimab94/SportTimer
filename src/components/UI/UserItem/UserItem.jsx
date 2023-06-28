@@ -22,30 +22,8 @@ const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
     {setTimerIsActive(props.isCounting)}
   },[props.isCounting])
 
-  /* const counterLaps = () => {
-    let lapSec = 0
-    if(timeLaps[0]){
-      lapSec = timeLeft - timeLaps[timeLaps.length-1].overallSec
-    }
-    setTimeLaps(
-      [...timeLaps,
-        {
-        overallSec:timeLeft,
-        overallTime:transformation(timeLeft),
-        lapTime: transformation(lapSec),
-        id:Date.now()
-      }
-      ])
-
-    if(userProps.laps<=(timeLaps.length+1)){
-      setTimerIsActive(false)
-    }
-  } */
-// написать такой код чтоб вместо общего времени было время круга у каждого юзера -> но чтоб при остановке секундомера появлялось общее время.
   const counterLaps = () => {
     let overallSec = props.timeLeft
-      if(!timeLaps){
-      }
     setTimeLaps(
       [...timeLaps,
         {
@@ -84,8 +62,10 @@ const removeLap = ()=>{
   if (props.isCounting && userProps.laps>=(timeLaps.length)){
     timeLaps.pop()
     setTimeLaps([...timeLaps]);
-    if (timeLaps.length>=1) 
-      setLapTimeLeft(props.timeLeft - timeLaps[timeLaps.length-1].overallSec) 
+    if (timeLaps.length>=1){
+        setTimerIsActive(true)
+        setLapTimeLeft(props.timeLeft - timeLaps[timeLaps.length-1].overallSec) 
+      }
     else setLapTimeLeft(props.timeLeft)
   }
 }

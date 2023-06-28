@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { getPadTime } from '../../../../helpers/getPadTime';
+import '../../../../css/mainTimer.css'
 
 
 const Timer = ({props,timerLoad,reset}) => {
@@ -26,7 +27,7 @@ const Timer = ({props,timerLoad,reset}) => {
 
 
   return (
-    <div>
+    <div className={props.style}>
           <span>{hours}</span>
           <span>:</span>
           <span>{minutes}</span>

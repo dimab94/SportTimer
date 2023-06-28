@@ -1,3 +1,15 @@
-.timer {
-  background: #270707;
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap");
+.main_timer {
+  font-size: 75px;
+  font-family: "Outfit", sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  color: #80c72e;
+  display: grid;
+  grid-template-columns: 30% 5% 30% 5% 30%;
+  justify-items: center;
 }/*# sourceMappingURL=mainTimer.css.map */

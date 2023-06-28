@@ -1,1 +1,1 @@
-{"version":3,"sources":["../components/UI/MainTimer/mainTimer.sass","mainTimer.css"],"names":[],"mappings":"AAAA;EACI,mBAAA;ACCJ","file":"mainTimer.css"}
+{"version":3,"sources":["../components/UI/MainTimer/mainTimer.sass","mainTimer.css"],"names":[],"mappings":"AAAQ,oFAAA;AAER;EACI,eAAA;EACA,iCAAA;EACA,oBAAA;EAAA,oBAAA;EAAA,aAAA;EACA,uBAAA;MAAA,oBAAA;UAAA,sBAAA;EACA,cAAA;EACA,aAAA;EACA,wCAAA;EACA,qBAAA;ACAJ","file":"mainTimer.css"}

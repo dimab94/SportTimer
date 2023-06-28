@@ -9,6 +9,7 @@ const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
   const[userInfo,setUserInfo] = useState(false)
   const[timeLaps, setTimeLaps] = useState([])
   const[timerIsActive, setTimerIsActive] = useState (false)
+  const style = 'user_timer'
 
   const transformation = (sec) => {
     const hours = getPadTime(Math.floor(sec/3600));
@@ -16,6 +17,8 @@ const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
     const seconds = getPadTime(sec - (minutes * 60 + hours * 3600));
     return `${hours}:${minutes}:${seconds}`
   }
+
+  const finishState = 'finished'
 
   useEffect(()=> {
     if(userProps.laps>timeLaps.length)
@@ -59,7 +62,7 @@ const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
   }
 
 const removeLap = ()=>{
-  if (props.isCounting && userProps.laps>=(timeLaps.length)){
+  if (props.isCounting && (userProps.laps+0.5)>=timeLaps.length){
     timeLaps.pop()
     setTimeLaps([...timeLaps]);
     if (timeLaps.length>=1){
@@ -74,7 +77,7 @@ const removeLap = ()=>{
   const showUserInfo =()=> (userInfo? setUserInfo(false) : setUserInfo(true))
 
   return (
-    <div className='list-item'>
+    <div className='list-item' >
         <div className='user-title'>
             <div className='user-wrapper' onClick={showUserInfo}>
               <div className='user-number'>{userProps.userNumber}</div>
@@ -84,7 +87,7 @@ const removeLap = ()=>{
                 <span>/</span>
                 <span>{userProps.laps}</span>
               </div>
-              <Timer props={{timeLeft,timerIsActive}} timerLoad={timerLoad} reset={reset}/>
+              <Timer props={{timeLeft,timerIsActive,style}} timerLoad={timerLoad} reset={reset}/>
             </div>
             { ((userProps.laps-1) > timeLaps.length) ?
               <button disabled={!timerIsActive} className='user-finish' onClick={counterLaps}>lap</button>

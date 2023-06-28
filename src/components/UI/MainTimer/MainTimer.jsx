@@ -1,7 +1,5 @@
 import React from 'react'
-//import { useState, useMemo} from 'react';
 import Timer from './Timer/Timer';
-import '../../../css/mainTimer.css'
 
 
 const MainTimer = ({timerIsActive,timerLoad,resetLaps,reset,timeLeft}) => {
@@ -12,11 +10,11 @@ const MainTimer = ({timerIsActive,timerLoad,resetLaps,reset,timeLeft}) => {
   
   const handleReset = ()=>{timerLoad(false); reset(0); resetLaps(true)};
 
-
+  const style = 'main_timer'
     
   return (
     <div>
-        <Timer props={{timerIsActive,timeLeft}} timerLoad={timerLoad} reset = {reset}/>
+        <Timer props={{timerIsActive,timeLeft,style}} timerLoad={timerLoad} reset = {reset}/>
         <div className='main__timer__buttons'>
           {timerIsActive ? (
               <button className='text-size' onClick={handleStop}>stop</button>

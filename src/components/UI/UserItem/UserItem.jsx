@@ -12,13 +12,11 @@ const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
   const style = 'user_timer'
 
   const transformation = (sec) => {
-    const hours = getPadTime(Math.floor(sec/3600));
-    const minutes = getPadTime(Math.floor(sec/60) - hours*60);
-    const seconds = getPadTime(sec - (minutes * 60 + hours * 3600));
+    const hours = getPadTime(Math.floor(sec/36000));
+    const minutes = getPadTime(Math.floor(sec/600) - hours*60);
+    const seconds = getPadTime(Math.floor(sec/10) - (minutes * 60 + hours * 3600));
     return `${hours}:${minutes}:${seconds}`
   }
-
-  const finishState = 'finished'
 
   useEffect(()=> {
     if(userProps.laps>timeLaps.length)
@@ -41,6 +39,7 @@ const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
     if(userProps.laps<=(timeLaps.length+1)){
       setTimerIsActive(false)
       setLapTimeLeft(overallSec)
+      document.querySelector('.list-item').classList.add('finished')
     }
     else setLapTimeLeft(0)
     
@@ -68,6 +67,7 @@ const removeLap = ()=>{
     if (timeLaps.length>=1){
         setTimerIsActive(true)
         setLapTimeLeft(props.timeLeft - timeLaps[timeLaps.length-1].overallSec) 
+        document.querySelector('.list-item').classList.remove('finished')
       }
     else setLapTimeLeft(props.timeLeft)
   }

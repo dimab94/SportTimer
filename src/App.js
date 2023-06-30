@@ -35,7 +35,7 @@ function App() {
   return (
     <div className="App">
       <div className='main'>
-        <AddUserForm add={addNewUser}/>
+        <AddUserForm add={addNewUser} props ={{isCounting,resetState}} />
         <MainTimer timerIsActive= {isCounting} timerLoad = {countingProgres} resetLaps={resetLaps} reset={reset} timeLeft={timeLeft}/>
         {users.length !==0
           ? <UserList props={{isCounting,resetState,timeLeft}} users={users} remove={removeUser} timerLoad = {countingProgres} resetLaps={resetLaps}/>
@@ -54,6 +54,7 @@ export default App;
     - функционал для отмены последнего круга ДОДЕЛАТЬ!! Не работает если отменить последний круг! ++
     - сделать чтоб отображалось время круга, а после финиш - общее  ++
     - Поприятней интерфейс (подсвечивание тех кто финишировал зеленым, большой главный секундомер!) ++
+    - отвалился фавикон маленький для декстопа.
     - Проверка полей ввода
     - сохранение информации в кэш и работа когда телефон в спящем или приложуха свернута. (тут скорее через PWA)
     -----------------------

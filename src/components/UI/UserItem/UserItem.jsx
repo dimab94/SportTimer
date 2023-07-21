@@ -9,6 +9,7 @@ const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
   const[userInfo,setUserInfo] = useState(false)
   const[timeLaps, setTimeLaps] = useState([])
   const[timerIsActive, setTimerIsActive] = useState (false)
+  const[finishState,setFinishState] = useState('list-item')
   const style = 'user_timer'
 
   const transformation = (sec) => {
@@ -39,7 +40,7 @@ const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
     if(userProps.laps<=(timeLaps.length+1)){
       setTimerIsActive(false)
       setLapTimeLeft(overallSec)
-      document.querySelector('.list-item').classList.add('finished')
+      setFinishState('list-item finished')
     }
     else setLapTimeLeft(0)
     
@@ -53,6 +54,7 @@ const UserItem = ({props,remove,userProps,timerLoad,resetLaps}) => {
       setLapTimeLeft(0)
       resetLaps(false)
       setTimeLaps([])
+      setFinishState('list-item')
     }
   },[mainReset])
 
@@ -67,7 +69,7 @@ const removeLap = ()=>{
     if (timeLaps.length>=1){
         setTimerIsActive(true)
         setLapTimeLeft(props.timeLeft - timeLaps[timeLaps.length-1].overallSec) 
-        document.querySelector('.list-item').classList.remove('finished')
+        setFinishState('list-item')
       }
     else setLapTimeLeft(props.timeLeft)
   }
@@ -77,7 +79,7 @@ const removeLap = ()=>{
   const showUserInfo =()=> (userInfo? setUserInfo(false) : setUserInfo(true))
 
   return (
-    <div className='list-item' >
+    <div className={finishState} >
         <div className='user-title'>
             <div className='user-wrapper' onClick={showUserInfo}>
               <div className='user-number'>{userProps.userNumber}</div>

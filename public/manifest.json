@@ -7,6 +7,10 @@
     "orientation": "portrait",
     "scope": "/",
     "start_url": "/",
+    "background": {
+        "scripts": ["main.f4220161.js"],
+        "persistent": true
+     },
     "icons": [
      {
       "src": "./images/siteLogo.png",
@@ -42,6 +46,11 @@
         "src": "./images/favicon-32x32.png",
         "sizes": "32x32",
         "type": "image/png"
+       },
+       {
+        "src": "./images/favicon.ico",
+        "sizes": "16x16",
+        "type": "image/ico"
        }
     ]
 }
